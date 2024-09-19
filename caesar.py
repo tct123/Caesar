@@ -1,23 +1,17 @@
-import string
+def caesar_encrypt(text, shift):
+    result = ""
+    for i in range(len(text)):
+        char = text[i]
+        if char.isupper():
+            result += chr((ord(char) + shift - 65) % 26 + 65)
+        elif char.islower():
+            result += chr((ord(char) + shift - 97) % 26 + 97)
+        else:
+            result += char
+    return result
 
 
-def caesar(text):
-    text = text.lower()
-    abc = string.ascii_lowercase
-    abclist = []
-    for letter in abc:
-        abclist.append(letter)
-    texts = text.split(" ")
-    letterlist = []
-    for text in texts:
-        for letter in text:
-            letterlist.append(abclist[slice(letter)])
-    text = ""
-    for letter in letterlist:
-        print(letter)
-        # text.join(letter)
-    return text
-
-
-if __name__ == "__main__":
-    print(caesar(text="Hallo Welt"))
+text = "Hello World!"
+shift = 200
+encrypted_text = caesar_encrypt(text, shift)
+print("Verschlüsselter Text:", encrypted_text)
